@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FAQS } from '../constants';
 import { Accordion } from './ui/Accordion';
+import { ScrollReveal } from './ui/ScrollReveal';
 
 export const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -12,18 +13,21 @@ export const FAQSection: React.FC = () => {
   return (
     <section id="duvidas" className="py-24 px-6 md:px-12 max-w-3xl mx-auto">
       <div className="mb-12 text-center">
-        <h2 className="font-serif text-3xl md:text-4xl text-slate-800">Perguntas Frequentes</h2>
+        <ScrollReveal width="100%">
+          <h2 className="font-serif text-3xl md:text-4xl text-slate-800">Perguntas Frequentes</h2>
+        </ScrollReveal>
       </div>
-      
+
       <div className="space-y-2">
         {FAQS.map((faq, index) => (
-          <Accordion 
-            key={index}
-            question={faq.question}
-            answer={faq.answer}
-            isOpen={openIndex === index}
-            onToggle={() => handleToggle(index)}
-          />
+          <ScrollReveal key={index} delay={index * 0.1}>
+            <Accordion
+              question={faq.question}
+              answer={faq.answer}
+              isOpen={openIndex === index}
+              onToggle={() => handleToggle(index)}
+            />
+          </ScrollReveal>
         ))}
       </div>
     </section>
