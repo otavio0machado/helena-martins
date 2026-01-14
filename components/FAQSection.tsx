@@ -12,13 +12,15 @@ export const FAQSection: React.FC = () => {
 
   return (
     <section id="duvidas" className="py-24 px-6 md:px-12 max-w-3xl mx-auto">
-      <div className="mb-12 text-center">
+      <div className="mb-12 text-center space-y-4">
         <ScrollReveal width="100%">
-          <h2 className="font-serif text-3xl md:text-4xl text-slate-800">Perguntas Frequentes</h2>
+          {/* Gold decorative accent */}
+          <div className="w-16 h-1 bg-gradient-to-r from-gold-400 to-gold-300 mx-auto mb-6"></div>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-charcoal font-semibold">Perguntas Frequentes</h2>
         </ScrollReveal>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-3">
         {FAQS.map((faq, index) => (
           <ScrollReveal key={index} delay={index * 0.1}>
             <Accordion

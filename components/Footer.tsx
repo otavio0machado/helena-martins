@@ -4,20 +4,23 @@ import { Leaf } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-white py-12 px-6 border-t border-stone-100">
+    <footer className="bg-charcoal py-16 px-6">
       <div className="max-w-6xl mx-auto flex flex-col items-center gap-8">
-        
-        <div className="flex items-center gap-2 text-emerald-800">
-          <Leaf size={20} strokeWidth={1.5} className="text-emerald-600" />
-          <span className="font-serif font-medium text-slate-800">Dra. Helena Martins</span>
+
+        {/* Gold divider line */}
+        <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent"></div>
+
+        <div className="flex items-center gap-2.5">
+          <Leaf size={22} strokeWidth={1.8} className="text-sage-400" />
+          <span className="font-serif font-medium text-cream-100 text-lg tracking-wide">Dra. Helena Martins</span>
         </div>
 
-        <div className="flex gap-6">
+        <div className="flex gap-4">
           {SOCIALS.map((social, index) => (
-            <a 
+            <a
               key={index}
               href={social.href}
-              className="p-3 bg-stone-50 rounded-full text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 transition-colors"
+              className="p-3 bg-charcoal border border-cream-200/20 rounded-full text-cream-300 hover:text-gold-400 hover:border-gold-400/50 transition-all duration-300"
               target="_blank"
               rel="noopener noreferrer"
               aria-label={social.label}
@@ -27,7 +30,7 @@ export const Footer: React.FC = () => {
           ))}
         </div>
 
-        <div className="text-slate-400 text-xs text-center">
+        <div className="text-cream-400/60 text-xs text-center">
           © {new Date().getFullYear()} Helena Martins Nutrição. Todos os direitos reservados.
         </div>
       </div>
