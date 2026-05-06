@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronDown } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface AccordionProps {
@@ -11,37 +11,29 @@ interface AccordionProps {
 
 export const Accordion: React.FC<AccordionProps> = ({ question, answer, isOpen, onToggle }) => {
   return (
-    <div className={`border border-sage-100 rounded-xl mb-3 transition-all duration-300 ${isOpen ? 'bg-white shadow-md' : 'bg-cream-50 hover:bg-white hover:shadow-sm'}`}>
+    <div className="border-b rule">
       <button
         onClick={onToggle}
-        className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none group"
+        className="w-full py-5 flex items-start justify-between gap-6 text-left hover:text-clay transition-colors"
+        aria-expanded={isOpen}
       >
-        <span className={`text-lg font-medium transition-colors ${isOpen ? 'text-sage-600' : 'text-charcoal group-hover:text-sage-600'}`}>
-          {question}
-        </span>
-        <motion.span
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3 }}
-          className={`ml-4 flex-shrink-0 ${isOpen ? 'text-gold-400' : 'text-sage-400'}`}
-        >
-          <ChevronDown size={20} />
-        </motion.span>
+        <span className="font-serif text-lg md:text-xl leading-snug text-graphite">{question}</span>
+        {isOpen ? (
+          <Minus size={20} strokeWidth={1.5} className="text-clay shrink-0 mt-1.5" />
+        ) : (
+          <Plus size={20} strokeWidth={1.5} className="text-graphite-soft shrink-0 mt-1.5" />
+        )}
       </button>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
+            animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
             className="overflow-hidden"
           >
-            <div className="px-6 pb-5">
-              <div className="w-12 h-0.5 bg-gold-300 mb-3"></div>
-              <p className="text-charcoal/70 leading-relaxed">
-                {answer}
-              </p>
-            </div>
+            <p className="pb-6 pr-12 text-[15px] text-graphite-soft leading-relaxed">{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
