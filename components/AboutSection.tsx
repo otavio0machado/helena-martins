@@ -1,62 +1,67 @@
 import React from 'react';
-import { BIO_TEXT } from '../constants';
+import { HERO, CREDENTIALS, PROFESSIONAL } from '../constants';
 import { ScrollReveal } from './ui/ScrollReveal';
 
 export const AboutSection: React.FC = () => {
   return (
-    <section id="sobre" className="relative min-h-screen flex items-center pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
-      <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-        {/* Left Column: Content */}
-        <div className="order-2 md:order-1 space-y-8">
+    <section id="topo" className="pt-32 pb-20 md:pt-40 md:pb-28 px-5 md:px-8">
+      <div className="max-w-5xl mx-auto grid md:grid-cols-12 gap-10 md:gap-14 items-start">
+        <div className="md:col-span-7 order-2 md:order-1">
           <ScrollReveal>
-            {/* Gold decorative accent */}
-            <div className="w-20 h-1 bg-gradient-to-r from-gold-400 to-gold-300 mb-6"></div>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-charcoal leading-[1.15] font-semibold">
-              {BIO_TEXT.greeting}
+            <p className="label-mono text-clay mb-5">{HERO.kicker}</p>
+          </ScrollReveal>
+          <ScrollReveal delay={0.05}>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.1] text-graphite mb-7 tracking-tight-2">
+              {HERO.title}
             </h1>
           </ScrollReveal>
-
-          <ScrollReveal delay={0.2}>
-            <h2 className="text-lg md:text-xl text-charcoal/70 font-light leading-relaxed max-w-lg">
-              {BIO_TEXT.intro}
-            </h2>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.3}>
-            <p className="text-charcoal/60 leading-relaxed text-base">
-              {BIO_TEXT.description}
+          <ScrollReveal delay={0.1}>
+            <p className="text-base md:text-lg text-graphite-soft leading-relaxed mb-5 max-w-2xl">
+              {HERO.lead}
             </p>
           </ScrollReveal>
-
-          <ScrollReveal delay={0.4}>
-            <div className="pt-4 space-y-3">
-              {BIO_TEXT.credentials.map((credential, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-sage-400"></div>
-                  <span className="text-sm text-charcoal/60">{credential}</span>
-                </div>
-              ))}
+          <ScrollReveal delay={0.15}>
+            <p className="text-base md:text-lg text-graphite-soft leading-relaxed mb-9 max-w-2xl">
+              {HERO.detail}
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={0.2}>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href={PROFESSIONAL.doctoraliaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-graphite text-paper px-5 py-3 hover:bg-graphite-soft transition-colors text-[15px]"
+              >
+                Agendar pelo Doctoralia
+              </a>
+              <a
+                href="#abordagem"
+                className="inline-flex items-center justify-center border rule px-5 py-3 hover:bg-paper-warm transition-colors text-[15px] text-graphite"
+              >
+                Como funciona
+              </a>
             </div>
           </ScrollReveal>
         </div>
 
-        {/* Right Column: Image */}
-        <div className="relative order-1 md:order-2 flex justify-center md:justify-end">
-          <ScrollReveal delay={0.5} className="relative w-full max-w-md">
-            {/* Sage background decoration */}
-            <div className="absolute inset-0 bg-gradient-to-br from-sage-200 to-sage-300 rounded-tr-[80px] rounded-bl-[80px] -translate-x-4 translate-y-4 -z-10"></div>
-
-            {/* Gold accent border */}
-            <div className="absolute -top-3 -right-3 w-24 h-24 border-t-2 border-r-2 border-gold-400 rounded-tr-[40px]"></div>
-
-            <img
-              src="https://picsum.photos/500/700?grayscale"
-              alt="Dra. Helena Martins"
-              className="w-full h-[550px] object-cover rounded-tl-2xl rounded-tr-[80px] rounded-br-2xl rounded-bl-[80px] shadow-2xl grayscale-[20%] hover:grayscale-0 transition-all duration-700 ease-in-out"
-            />
+        {/* Credenciais à direita — formato ficha clínica, não cartão IA */}
+        <aside id="sobre" className="md:col-span-5 order-1 md:order-2 md:border-l rule md:pl-10">
+          <ScrollReveal delay={0.25}>
+            <p className="label-mono text-graphite-soft mb-5">Ficha profissional</p>
+            <dl className="space-y-5">
+              {CREDENTIALS.map((c) => (
+                <div key={c.label} className="border-b rule pb-4 last:border-0">
+                  <dt className="label-mono text-graphite-soft mb-1.5">{c.label}</dt>
+                  <dd className="text-[15px] text-graphite leading-snug">{c.value}</dd>
+                  {c.source && (
+                    <dd className="text-xs text-graphite-soft mt-1 italic">{c.source}</dd>
+                  )}
+                </div>
+              ))}
+            </dl>
           </ScrollReveal>
-        </div>
+        </aside>
       </div>
     </section>
   );

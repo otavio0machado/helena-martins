@@ -1,29 +1,19 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 interface ScrollRevealProps {
   children: React.ReactNode;
   delay?: number;
-  width?: "fit-content" | "100%";
+  width?: 'fit-content' | '100%';
   className?: string;
 }
 
-export const ScrollReveal: React.FC<ScrollRevealProps> = ({ 
-  children, 
-  delay = 0, 
-  width = "100%",
-  className = ""
-}) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.7, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
-      style={{ width }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-};
+// Passthrough — a versão original era um wrapper framer-motion com
+// initial opacity-0/y-30 + whileInView que produzia conteúdo invisível
+// quando o elemento já estava no viewport na primeira pintura. Para uma
+// landing editorial densa, sem necessidade real de fade-on-scroll,
+// passthrough é o comportamento correto.
+export const ScrollReveal: React.FC<ScrollRevealProps> = ({ children, width = '100%', className = '' }) => (
+  <div className={className} style={{ width }}>
+    {children}
+  </div>
+);
